@@ -4,7 +4,11 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
+<<<<<<< Updated upstream
   productGUID: ec4a7aaac21fc874ca2186f4a9db963f
+=======
+  productGUID: 0091b6c7ad8cf4940b05c86637c63cb2
+>>>>>>> Stashed changes
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -719,7 +723,7 @@ PlayerSettings:
   cloudProjectId: f1db65f3-2de2-4fac-81fc-84d2071a5f39
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: PTACG 2024-06-08_19-49-01
+  projectName: 
   organizationId: ken_kaneki_111
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
