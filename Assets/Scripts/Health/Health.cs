@@ -31,7 +31,7 @@ public class Health : MonoBehaviour
     
     private void Awake()
     {
-        character = GetComponent<Character>();
+        //character = GetComponent<Character>();
         controller = GetComponent<CharacterController>();
         collider2D = GetComponent<Collider2D>();        
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -57,7 +57,7 @@ public class Health : MonoBehaviour
             return;
         }
 
-        if (!shieldBroken && character != null)
+        if (!shieldBroken)
         {
             CurrentShield -= damage;
             UIManager.Instance.UpdateHealth(CurrentHealth, maxHealth, CurrentShield, maxShield);
