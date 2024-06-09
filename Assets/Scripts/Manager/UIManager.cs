@@ -38,5 +38,5 @@ private float playerMaxHealth;
 
         shieldBar.fillAmount = Mathf.Lerp(shieldBar.fillAmount, playerCurrentShield / playerMaxShield, 10f * Time.deltaTime);
         currentShieldTMP.text = playerCurrentShield.ToString() + "/" + playerMaxShield.ToString();       
-}
+	}
 }

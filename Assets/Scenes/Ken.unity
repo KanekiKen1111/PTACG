@@ -27859,7 +27859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bae90b957538847a33e5ead1823bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableCharacter: {fileID: 0}
+  playableCharacter: {fileID: 1689692262}
   spawnPosition: {fileID: 1091287833}
 --- !u!4 &1652459009
 Transform:
@@ -27986,7 +27986,6 @@ GameObject:
   - component: {fileID: 1689692264}
   - component: {fileID: 1689692263}
   - component: {fileID: 1689692268}
-  - component: {fileID: 1689692267}
   - component: {fileID: 1689692270}
   - component: {fileID: 1689692269}
   - component: {fileID: 1689692271}
@@ -28141,18 +28140,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.45, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &1689692267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689692262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f6346b540aeef408611b3fa4919f57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1689692268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28247,7 +28234,7 @@ MonoBehaviour:
   maxHealth: 10
   initialShield: 5
   maxShield: 5
-  destroyObject: 0
+  destroyObject: 1
 --- !u!1 &1707475520
 GameObject:
   m_ObjectHideFlags: 0

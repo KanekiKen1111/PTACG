@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private Character playableCharacter;
+    [SerializeField] private GameObject playableCharacter;
     [SerializeField] private Transform spawnPosition;
 
     // Update is called once per frame
