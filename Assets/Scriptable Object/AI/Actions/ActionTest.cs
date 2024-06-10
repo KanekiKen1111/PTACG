@@ -1,13 +1,18 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Action/Test")]
-public class ActionTest : AIAction
-{    
-    public override void Act(StateController controller)
+public class ActionTest : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
     {
-        Debug.Log("Acting");
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

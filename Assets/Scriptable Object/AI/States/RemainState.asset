@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034597b0409717f4fac3c25fdc0a7c03, type: 3}
-  m_Name: Action Test 1
+  m_Script: {fileID: 11500000, guid: 7537a428bb59c7c44bf1f44079b677a0, type: 3}
+  m_Name: RemainState
   m_EditorClassIdentifier: 
+  Actions: []
+  Transitions: []
