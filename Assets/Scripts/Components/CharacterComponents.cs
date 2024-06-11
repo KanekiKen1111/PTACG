@@ -5,18 +5,24 @@ using UnityEngine;
 public class CharacterComponents : MonoBehaviour
 {
     protected float horizontalInput;
-protected float verticalInput;
+    protected float verticalInput;
 
-protected CharacterController controller;
-protected CharacterMovement characterMovement;
+    protected CharacterController controller;
+    protected CharacterMovement characterMovement;
+    //protected CharacterWeapon characterWeapon;
+    protected Animator animator;
+    protected Character character;
     
     protected virtual void Start()
     {
         controller = GetComponent<CharacterController>();
-        characterMovement = GetComponent<CharacterMovement>();        
-}
+        character = GetComponent<Character>();
+        //characterWeapon = GetComponent<CharacterWeapon>();
+        characterMovement = GetComponent<CharacterMovement>();
+        animator = GetComponent<Animator>();        
+    }
 
-protected virtual void Update()
+    protected virtual void Update()
     {
         HandleAbility();
     }
@@ -36,8 +42,10 @@ protected virtual void Update()
     
     // Here get the main input we need to control our character
     protected virtual void InternalInput()
-    {        
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+    {             
+		{
+			horizontalInput = Input.GetAxisRaw("Horizontal");
+			verticalInput = Input.GetAxisRaw("Vertical");  
+		}
     }
 }
