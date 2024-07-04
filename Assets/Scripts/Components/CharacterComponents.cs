@@ -8,8 +8,8 @@ public class CharacterComponents : MonoBehaviour
     protected float verticalInput;
 
     protected CharacterController controller;
-    protected CharacterMovement characterMovement;
-    //protected CharacterWeapon characterWeapon;
+protected CharacterMovement characterMovement;
+protected CharacterWeapon characterWeapon;
     protected Animator animator;
     protected Character character;
     
@@ -17,7 +17,7 @@ public class CharacterComponents : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         character = GetComponent<Character>();
-        //characterWeapon = GetComponent<CharacterWeapon>();
+        characterWeapon = GetComponent<CharacterWeapon>();
         characterMovement = GetComponent<CharacterMovement>();
         animator = GetComponent<Animator>();        
     }
@@ -42,10 +42,8 @@ public class CharacterComponents : MonoBehaviour
     
     // Here get the main input we need to control our character
     protected virtual void InternalInput()
-    {             
-		{
-			horizontalInput = Input.GetAxisRaw("Horizontal");
-			verticalInput = Input.GetAxisRaw("Vertical");  
-		}
+    {        
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
     }
 }

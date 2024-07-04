@@ -12,7 +12,15 @@ public class CharacterFlip : CharacterComponents
     }
 
     [SerializeField] private FlipMode flipMode = FlipMode.MovementDirection;
-    [SerializeField] private float threshold = 0.1f;       
+    [SerializeField] private float threshold = 0.1f; 
+
+    // Returns if our character is facing Right
+    public bool FacingRight { get; set; }
+
+    private void Awake()
+    {
+        FacingRight = true;
+    }      
 
     protected override void HandleAbility()
     {
@@ -37,13 +45,9 @@ public class CharacterFlip : CharacterComponents
             {
                 FaceDirection(1);
             }
-            else if (controller.CurrentMovement.normalized.x < 0)
-            {
-                FaceDirection(-1);
-            }
             else
             {
-                FaceDirection(transform.localScale.x);
+                FaceDirection(-1);
             }
         }
     }
@@ -51,23 +55,32 @@ public class CharacterFlip : CharacterComponents
     // Flips our character by our Weapon Aiming
     private void FlipToWeaponDirection()
     {
-
+        if (characterWeapon != null)
+        {
+            float weaponAngle = characterWeapon.WeaponAim.CurrentAimAngleAbsolute;
+            if (weaponAngle > 90 || weaponAngle < -90)
+            {
+                FaceDirection(-1);
+            }
+            else
+            {
+                FaceDirection(1);
+            }
+        }
     }
 
     // Makes our character face the direction in which is moving
-    private void FaceDirection(float newDirection)
+    private void FaceDirection(int newDirection)
     {
-        //Get player size
-        float OriginalX = System.Math.Abs(transform.localScale.x);
-        float OriginalY = System.Math.Abs(transform.localScale.y);
-		
-        if (newDirection > 0)
-        {
-            transform.localScale = new Vector3(OriginalX, OriginalY, 1);
+        if (newDirection == 1)
+        { 
+            character.CharacterSprite.transform.localScale = new Vector3(1,1,1);
+            FacingRight = true;            
         }
         else
         {
-            transform.localScale = new Vector3(-OriginalX, OriginalY, 1);
-        }		
+            character.CharacterSprite.transform.localScale = new Vector3(-1,1,1);
+            FacingRight = false;            
+        }
     }
 }
