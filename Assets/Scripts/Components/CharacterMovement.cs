@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class CharacterMovement : CharacterComponents
 {
+	private float horizontal;
+    private float vertical;
+
+    public void SetHorizontal(float value)
+    {
+        horizontal = value;
+        // Apply the horizontal movement logic here
+    }
+
+    public void SetVertical(float value)
+    {
+        vertical = value;
+        // Apply the vertical movement logic here
+    }
     [SerializeField] private float walkSpeed = 6f;
 
     // A property is a method to store / return a value. In this case, its to controls our current move speed

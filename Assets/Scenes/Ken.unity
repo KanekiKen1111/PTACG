@@ -129262,7 +129262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403edbb4f1b9cfb47a6ea281ba24bdb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: {fileID: 11400000, guid: 7b14f0ed003e08d48a02aeff022bfac6, type: 2}
+  currentState: {fileID: 0}
   remainState: {fileID: 11400000, guid: c45260722138ec04da97967f82882d18, type: 2}
 --- !u!1001 &1355366443
 PrefabInstance:
@@ -131879,7 +131879,7 @@ Transform:
   m_GameObject: {fileID: 1529916974}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.298, y: -0.069, z: 0}
+  m_LocalPosition: {x: 0.566, y: -0.069, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133827,7 +133827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa8760a52a000744a202b098683867c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponToUse: {fileID: 2829660688902535827, guid: b6d4a70e349dd804eb13845ecb00ef9a,
+  weaponToUse: {fileID: 7807661810633088151, guid: b6d4a70e349dd804eb13845ecb00ef9a,
     type: 3}
   weaponHolderPosition: {fileID: 1529916975}
 --- !u!4 &1689692276 stripped

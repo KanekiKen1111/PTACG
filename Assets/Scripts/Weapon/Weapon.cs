@@ -45,11 +45,10 @@ public class Weapon : MonoBehaviour
         CurrentAmmo = magazineSize;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         WeaponCanShoot();
         RotateWeapon();   
-        // Debug.Log(CurrentAmmo);	  // We can remove this   
     }
 
     public void TriggerShot()
@@ -93,7 +92,7 @@ public class Weapon : MonoBehaviour
     }
 
     // Makes our weapon start shooting
-    private void RequestShot()
+    protected virtual void RequestShot()
     {
         if (!CanShoot)
         {
@@ -107,8 +106,8 @@ public class Weapon : MonoBehaviour
          
         WeaponAmmo.ConsumeAmmo();
 
-        CanShoot = false;
-	}
+        //CanShoot = false;  //Remove this line
+    }
 
     // Apply a force to our movement when we shoot
     private void Recoil()
@@ -127,11 +126,11 @@ public class Weapon : MonoBehaviour
     }
 
     // Controls the next time we can shoot
-    private void WeaponCanShoot()
+    protected virtual void WeaponCanShoot()
     {
         if (Time.time > nextShotTime)  //Actual time in the game GREATER THAN fire rate
         {
-            CanShoot = true;
+            CanShoot = true;  //Here we have set CanShoot is TRUE, that’s why we remove a command line at RequestShot()
             nextShotTime = Time.time + timeBtwShots;
         }
     }
@@ -152,9 +151,9 @@ public class Weapon : MonoBehaviour
                 WeaponAmmo.RefillAmmo();
             }
         }
-}
+	}
 
-    private void RotateWeapon()
+    protected virtual void RotateWeapon()
     {
         if (WeaponOwner.GetComponent<CharacterFlip>().FacingRight)
         {
