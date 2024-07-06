@@ -1,73 +1,82 @@
-using System;
+using System; 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class SingleShotWeapon : Weapon
 {
-    [SerializeField] private float speed = 100f;
-    [SerializeField] private float acceleration = 0f;
+    [SerializeField] private Vector3 projectileSpawnPosition;
 
-    // Returns the direction of this projectile    
-    public Vector2 Direction { get; set; }
-    
-    // Returns if the projectile is facing right   
-    public bool FacingRight { get; set; }
+    // Controls the position of our projectile spawn
+public Vector3 ProjectileSpawnPosition { get; set; }
 
-    // Returns the speed of the projectile    
-    public float  Speed { get; set; }
+    // Returns the reference to the pooler in this GameObject
+public ObjectPooler Pooler { get; set; }
 
-    public Character ProjectileOwner { get; set; }
-    
-    // Internal
-    private Rigidbody2D myRigidbody2D;
-    private Collider2D collider2D;
-    private SpriteRenderer spriteRenderer;
-    private Vector2 movement;
-    
-    private void Awake()
+    private Vector3 projectileSpawnValue;
+
+    private void Start()
     {
-        Speed = speed;
-        FacingRight = true;
-		                
-        myRigidbody2D = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        collider2D = GetComponent<Collider2D>();
+        projectileSpawnValue = projectileSpawnPosition;
+        projectileSpawnValue.y = -projectileSpawnPosition.y; 
+
+        Pooler = GetComponent<ObjectPooler>();
     }
 
-    private void FixedUpdate()
-    {       
-        MoveProjectile();       
-    }
-    
-    // Moves this projectile  
-    public void MoveProjectile()
+    protected override void Update ()
     {
-        movement = Direction * (Speed / 10f ) * Time.fixedDeltaTime;
-        myRigidbody2D.MovePosition(myRigidbody2D.position + movement);
-
-        Speed += acceleration * Time.deltaTime;
+	  base.Update();
     }
-   
-    // Flips this projectile   
-    public void FlipProjectile()
-    {   
-        if (spriteRenderer != null)
+
+    protected override void RequestShot()
+    {
+        base.RequestShot();
+
+        if (CanShoot)
         {
-            spriteRenderer.flipX = !spriteRenderer.flipX;
+            EvaluateProjectileSpawnPosition();
+            SpawnProjectile(ProjectileSpawnPosition);
         }
     }
-  
-    // Set the direction and rotation in order to move  
-    public void SetDirection(Vector2 newDirection, Quaternion rotation, bool isFacingRight = true)
-    {
-        Direction = newDirection;
-        
-        if (FacingRight != isFacingRight)
-        {
-            FlipProjectile();
-        }
 
-        transform.rotation = rotation;
+    // Spawns a projectile from the pool, setting it's new direction based on the character's direction (WeaponOwner)
+    private void SpawnProjectile(Vector2 spawnPosition)
+    {
+        // Get Object from the pool
+        GameObject projectilePooled = Pooler.GetObjectFromPool();
+        projectilePooled.transform.position = spawnPosition;
+        projectilePooled.SetActive(true);
+
+        // Get reference to the projectile
+        Projectile projectile = projectilePooled.GetComponent<Projectile>();
+
+        // Set direction and rotation
+        Vector2 newDirection = WeaponOwner.GetComponent<CharacterFlip>().FacingRight ? transform.right : transform.right * -1;
+        projectile.SetDirection(newDirection, transform.rotation, WeaponOwner.GetComponent<CharacterFlip>().FacingRight);
+
+        CanShoot = false;  
+    }
+
+    // Calculates the position where our projectile is going to be fired
+    private void EvaluateProjectileSpawnPosition()
+    {
+        if (WeaponOwner.GetComponent<CharacterFlip>().FacingRight)
+        {
+            // Right side
+            ProjectileSpawnPosition = transform.position + transform.rotation * projectileSpawnPosition;
+        }
+        else
+        {
+            // Left side
+            ProjectileSpawnPosition = transform.position - transform.rotation * projectileSpawnValue;
+        }       
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        EvaluateProjectileSpawnPosition();
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(ProjectileSpawnPosition, 0.1f);
     }
 }
