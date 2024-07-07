@@ -1,82 +1,167 @@
-using System; 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleShotWeapon : Weapon
-{
-    [SerializeField] private Vector3 projectileSpawnPosition;
+public class Weapon : MonoBehaviour
+{   
+    [Header("Settings")] 
+    [SerializeField] private float timeBtwShots = 0.5f;
 
-    // Controls the position of our projectile spawn
-public Vector3 ProjectileSpawnPosition { get; set; }
+    [Header("Weapon")] 
+    [SerializeField] private bool useMagazine = true;
+    [SerializeField] private int magazineSize = 30;
+    [SerializeField] private bool autoReload = true;
 
-    // Returns the reference to the pooler in this GameObject
-public ObjectPooler Pooler { get; set; }
+    [Header("Recoil")] 
+    [SerializeField] private bool useRecoil = true;
+    [SerializeField] private int recoilForce = 30;
 
-    private Vector3 projectileSpawnValue;
+    // Reference of the Character that controls this Weapon
+    public Character WeaponOwner { get; set; }
 
-    private void Start()
+    // Current Ammo we have
+    public int CurrentAmmo { get; set; }
+
+    // Reference to our WeaponAmmo
+    public WeaponAmmo WeaponAmmo { get; set; }
+
+    // Returns if this weapon use magazine
+    public bool UseMagazine => useMagazine;
+
+    // Returns the size of our Magazine
+    public int MagazineSize => magazineSize;
+
+    // Returns if we can shoot now
+    public bool CanShoot { get; set; }
+
+    // Internal
+    private float nextShotTime;
+    private CharacterController controller; // Because we need to know the character is facing which side for RECOIL
+
+    private void Awake()
     {
-        projectileSpawnValue = projectileSpawnPosition;
-        projectileSpawnValue.y = -projectileSpawnPosition.y; 
-
-        Pooler = GetComponent<ObjectPooler>();
+        WeaponAmmo = GetComponent<WeaponAmmo>();
+        CurrentAmmo = magazineSize;
     }
 
-    protected override void Update ()
+    protected virtual void Update()
     {
-	  base.Update();
+        WeaponCanShoot();
+        RotateWeapon();   
     }
 
-    protected override void RequestShot()
+    public void TriggerShot()
     {
-        base.RequestShot();
+        StartShooting();
+    }
 
-        if (CanShoot)
+    // Makes our Weapon stop working
+    public void StopWeapon()
+    {
+        if (useRecoil)
         {
-            EvaluateProjectileSpawnPosition();
-            SpawnProjectile(ProjectileSpawnPosition);
+            controller.ApplyRecoil(Vector2.one, 0f);
         }
     }
 
-    // Spawns a projectile from the pool, setting it's new direction based on the character's direction (WeaponOwner)
-    private void SpawnProjectile(Vector2 spawnPosition)
+    // Activates our weapon in order to shoot
+    private void StartShooting()
     {
-        // Get Object from the pool
-        GameObject projectilePooled = Pooler.GetObjectFromPool();
-        projectilePooled.transform.position = spawnPosition;
-        projectilePooled.SetActive(true);
-
-        // Get reference to the projectile
-        Projectile projectile = projectilePooled.GetComponent<Projectile>();
-
-        // Set direction and rotation
-        Vector2 newDirection = WeaponOwner.GetComponent<CharacterFlip>().FacingRight ? transform.right : transform.right * -1;
-        projectile.SetDirection(newDirection, transform.rotation, WeaponOwner.GetComponent<CharacterFlip>().FacingRight);
-
-        CanShoot = false;  
-    }
-
-    // Calculates the position where our projectile is going to be fired
-    private void EvaluateProjectileSpawnPosition()
-    {
-        if (WeaponOwner.GetComponent<CharacterFlip>().FacingRight)
+        if (useMagazine)
         {
-            // Right side
-            ProjectileSpawnPosition = transform.position + transform.rotation * projectileSpawnPosition;
+            if (WeaponAmmo != null)
+            {
+                if (WeaponAmmo.CanUseWeapon())
+                {
+                    RequestShot();
+                }
+                else
+                {
+                    if (autoReload)
+                    {
+                        Reload();
+                    }
+                }
+            }
         }
         else
         {
-            // Left side
-            ProjectileSpawnPosition = transform.position - transform.rotation * projectileSpawnValue;
-        }       
+            RequestShot();
+	  }
     }
 
-    private void OnDrawGizmosSelected()
+    // Makes our weapon start shooting
+    protected virtual void RequestShot()
     {
-        EvaluateProjectileSpawnPosition();
+        if (!CanShoot)
+        {
+            return;
+        }
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(ProjectileSpawnPosition, 0.1f);
+        if (useRecoil)
+        {
+            Recoil();
+        }
+         
+        WeaponAmmo.ConsumeAmmo();
+
+        //CanShoot = false;  //Remove this line
+    }
+
+    // Apply a force to our movement when we shoot
+    private void Recoil()
+    {
+        if (WeaponOwner != null)
+        {
+            if (WeaponOwner.GetComponent<CharacterFlip>().FacingRight)
+            {
+                controller.ApplyRecoil(Vector2.left, recoilForce);
+            }
+            else
+            {
+                controller.ApplyRecoil(Vector2.right, recoilForce);
+            }
+        }
+    }
+
+    // Controls the next time we can shoot
+    protected virtual void WeaponCanShoot()
+    {
+        if (Time.time > nextShotTime)  //Actual time in the game GREATER THAN fire rate
+        {
+            CanShoot = true;  //Here we have set CanShoot is TRUE, that’s why we remove a command line at RequestShot()
+            nextShotTime = Time.time + timeBtwShots;
+        }
+    }
+
+    // Reference the owner of this Weapon
+    public void SetOwner(Character owner)
+    {
+        WeaponOwner = owner; 
+        controller = WeaponOwner.GetComponent<CharacterController>();
+    }
+      
+    public void Reload()
+    {
+        if (WeaponAmmo != null)
+        {
+            if (useMagazine)
+            {
+                WeaponAmmo.RefillAmmo();
+            }
+        }
+	}
+
+    protected virtual void RotateWeapon()
+    {
+        if (WeaponOwner.GetComponent<CharacterFlip>().FacingRight)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 }

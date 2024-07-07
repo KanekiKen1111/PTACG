@@ -93,10 +93,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 347312231391162203}
+  - component: {fileID: 8629871511071932796}
   - component: {fileID: 6053406929621304183}
   - component: {fileID: -2749504284009451490}
   - component: {fileID: 255874040237773469}
-  - component: {fileID: 7807661810633088151}
   m_Layer: 0
   m_Name: Weapon_Bar
   m_TagString: Untagged
@@ -120,6 +120,25 @@ Transform:
   - {fileID: 5916629448337229648}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8629871511071932796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994523693970971712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d1aaa096d5692479ce73b80c2c2ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBtwShots: 0.5
+  useMagazine: 1
+  magazineSize: 30
+  autoReload: 1
+  useRecoil: 1
+  recoilForce: 30
+  projectileSpawnPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &6053406929621304183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,22 +181,3 @@ MonoBehaviour:
     type: 3}
   poolSize: 10
   poolCanExpand: 1
---- !u!114 &7807661810633088151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4994523693970971712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 055a5cb6c288d8946b5837145b5e949e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBtwShots: 0
-  useMagazine: 1
-  magazineSize: 30
-  autoReload: 1
-  useRecoil: 1
-  recoilForce: 30
-  projectileSpawnPosition: {x: 1.01, y: 0.27, z: 0}
