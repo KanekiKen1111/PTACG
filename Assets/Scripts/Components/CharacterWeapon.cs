@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterWeapon : CharacterComponents
-{   	
+{   
+    public static Action OnStartShooting;
+	
     [Header("Weapon Settings")]
     [SerializeField] private Weapon weaponToUse;
     [SerializeField] private Transform weaponHolderPosition;
 
     // Reference of the Weapon we are using
-public Weapon CurrentWeapon  { get; set; }
+    public Weapon CurrentWeapon  { get; set; }
 
-// Returns the reference to our Current Weapon Aim
+    // Returns the reference to our Current Weapon Aim
     public WeaponAim WeaponAim { get; set; }
 
     protected override void Start()
@@ -48,7 +50,8 @@ public Weapon CurrentWeapon  { get; set; }
 
         CurrentWeapon.TriggerShot();
         if (character.CharacterType == Character.CharacterTypes.Player)
-        {
+        {	
+            OnStartShooting?.Invoke();
             UIManager.Instance.UpdateAmmo(CurrentWeapon.CurrentAmmo, CurrentWeapon.MagazineSize);
         }     
     }
