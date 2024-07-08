@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterType: 0
-  characterSprite: {fileID: 0}
+  characterSprite: {fileID: 1078920481934298233}
   characterAnimator: {fileID: 0}
 --- !u!114 &2666379143747871199
 MonoBehaviour:

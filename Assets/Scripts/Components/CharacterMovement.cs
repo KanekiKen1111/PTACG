@@ -28,8 +28,9 @@ public class CharacterMovement : CharacterComponents
     // Moves our character by our current speed
     private void MoveCharacter()
     {
-        Vector2 movement = new Vector2(x: horizontalInput, y: verticalInput);         
-        Vector2 movementNormalized = movement.normalized;   
+        Vector2 movement = new Vector2(x: horizontalInput, y: verticalInput);
+        Vector2 moveInput = movement;
+        Vector2 movementNormalized = moveInput.normalized;         
         Vector2 movementSpeed = movementNormalized * MoveSpeed;
         controller.SetMovement(movementSpeed);
     }
@@ -57,5 +58,15 @@ public class CharacterMovement : CharacterComponents
     public void ResetSpeed()
     {
         MoveSpeed = walkSpeed;
+}
+
+    public void SetHorizontal(float value)
+    {
+        horizontalInput = value;
+    }
+
+    public void SetVertical(float value)
+    {
+        verticalInput = value;
     }
 }

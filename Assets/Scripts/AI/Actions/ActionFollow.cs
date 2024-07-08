@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "AI/Actions/Follow", fileName = "ActionFollow")]
 public class ActionFollow : AIAction
 {
-	characterMovement.SetVertical(newVerticalValue);
-	characterMovement.SetHorizontal(newHorizontalValue);
+	
     public float minDistanceToFollow = 2f;
     
     public override void Act(StateController controller)
