@@ -12,10 +12,10 @@ TagManager:
   - Water
   - UI
   - effects
+  - LevelComponents
   - 
   - 
-  - 
-  - 
+  - Player
   - 
   - 
   - 
@@ -47,10 +47,10 @@ TagManager:
   - name: Map
     uniqueID: 4250941897
     locked: 0
-  - name: Layer 3
+  - name: TOP
     uniqueID: 4189426099
     locked: 0
-  - name: New Layer 4
+  - name: Weapon
     uniqueID: 2893853141
     locked: 0
   - name: Player

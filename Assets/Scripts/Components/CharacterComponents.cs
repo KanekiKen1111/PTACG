@@ -8,8 +8,8 @@ public class CharacterComponents : MonoBehaviour
     protected float verticalInput;
 
     protected CharacterController controller;
-protected CharacterMovement characterMovement;
-protected CharacterWeapon characterWeapon;
+    protected CharacterMovement characterMovement;
+    protected CharacterWeapon characterWeapon;
     protected Animator animator;
     protected Character character;
     
@@ -43,7 +43,10 @@ protected CharacterWeapon characterWeapon;
     // Here get the main input we need to control our character
     protected virtual void InternalInput()
     {        
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        if (character.CharacterType == Character.CharacterTypes.Player)
+        {
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+        }
     }
 }

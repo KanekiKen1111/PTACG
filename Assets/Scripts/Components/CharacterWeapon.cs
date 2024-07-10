@@ -50,7 +50,8 @@ public class CharacterWeapon : CharacterComponents
 
         CurrentWeapon.TriggerShot();
         if (character.CharacterType == Character.CharacterTypes.Player)
-        {	
+        {
+	
             OnStartShooting?.Invoke();
             UIManager.Instance.UpdateAmmo(CurrentWeapon.CurrentAmmo, CurrentWeapon.MagazineSize);
         }     
