@@ -80,20 +80,15 @@ public class InventoryManager : MonoBehaviour
         inventoryPanel.SetActive(isInventoryVisible);
     }
 
-    private void UpdateKeyCountText(string keyName)
+    public void UpdateKeyCountText(string keyName)
     {
         if (keyCountTextDictionary.ContainsKey(keyName))
         {
             KeyData keyData = keys.Find(k => k.keyName == keyName);
             if (keyData != null)
             {
-                Debug.Log($"Updating text for {keyName} with count {keyData.keyCount}");
                 keyCountTextDictionary[keyName].text = $"{keyName}: {keyData.keyCount}";
             }
-        }
-        else
-        {
-            Debug.LogWarning($"No text element found for key: {keyName}");
         }
     }
 
