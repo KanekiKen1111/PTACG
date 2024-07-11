@@ -7,11 +7,14 @@ public class InteractableObject : MonoBehaviour
     public string message = "Press E to collect"; // Customizable message
 
     private bool isPlayerNearby = false;
+    public string keyName = "Key"; // Name of the key
+    private InventoryManager inventoryManager;
 
     void Start()
     {
         // Ensure the text is initially hidden
         interactText.gameObject.SetActive(false);
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     void Update()
@@ -43,6 +46,7 @@ public class InteractableObject : MonoBehaviour
 
     private void Collect()
     {
+        inventoryManager.AddKey(keyName);
         // Add logic for what happens when the object is collected
         Debug.Log("Object collected!");
 

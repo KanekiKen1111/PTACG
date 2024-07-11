@@ -6,7 +6,7 @@ public class RandomPrefabArrangerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        DrawDefaultInspector();
+        base.OnInspectorGUI();
 
         RandomPrefabArranger arranger = (RandomPrefabArranger)target;
 
