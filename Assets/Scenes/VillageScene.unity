@@ -16213,6 +16213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactText: {fileID: 748114026}
+  keyImage: {fileID: 1873336791}
   message: Press E to collect
   keyName: Silver Key
 --- !u!95 &500202784
@@ -70393,6 +70394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactText: {fileID: 589063802}
+  keyImage: {fileID: 2078348820}
   message: Press E to collect
   keyName: Iron Key
 --- !u!95 &647317170
@@ -73192,7 +73194,7 @@ PrefabInstance:
     - target: {fileID: 2255516452496828801, guid: f3dfe6b532ca49b4f848bb37534faed4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.94
+      value: 7.44
       objectReference: {fileID: 0}
     - target: {fileID: 2255516452496828801, guid: f3dfe6b532ca49b4f848bb37534faed4,
         type: 3}
@@ -78284,7 +78286,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c617b582f43fb2c479302f72c0890628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys: []
+  keys:
+  - keyName: 
+    keyCount: 0
+  - keyName: 
+    keyCount: 0
   inventoryPanel: {fileID: 2031347947}
   toggleKey: 107
   keyCountTexts:
@@ -84193,6 +84199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactText: {fileID: 2054718498}
+  keyImage: {fileID: 1873336791}
   message: Press E to collect
   keyName: Silver Key
 --- !u!61 &1160202578
@@ -110302,6 +110309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactText: {fileID: 1861823818}
+  keyImage: {fileID: 113576595}
   message: Press E to collect
   keyName: Gold Key
 --- !u!95 &1808652351
