@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; // Required for UI elements
+using UnityEngine.UI;
 
 public class GuardHealth : MonoBehaviour
 {
