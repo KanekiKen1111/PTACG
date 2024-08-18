@@ -142,6 +142,8 @@ public class DragonGuard : MonoBehaviour
             StartCoroutine(ShootFireballs());
         }
     }
+	
+	
 
     IEnumerator ShootFireballs()
     {

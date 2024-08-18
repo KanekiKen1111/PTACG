@@ -6,6 +6,7 @@ public class Fireball : MonoBehaviour
     public float lifetime = 5.0f; // Duration of the fireball before being destroyed
     public float explosionLifetime = 2.0f; // Duration of the explosion effect
     public GameObject explosionPrefab; // Explosion effect prefab
+    public int damage = 2; // Damage dealt by the fireball
     private Rigidbody2D rb;
 
     public List<string> collisionTags = new List<string>(); // List of tags to check for collisions
@@ -36,6 +37,14 @@ public class Fireball : MonoBehaviour
         if (taggedObjects.Contains(collidedObject))
         {
             Debug.Log("Fireball collided with tagged object: " + collidedObject.name);
+
+            // Apply damage if the collided object has a Health component
+            Health health = collidedObject.GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+                Debug.Log("Fireball dealt " + damage + " damage to " + collidedObject.name);
+            }
 
             // Instantiate explosion effect
             if (explosionPrefab != null)
