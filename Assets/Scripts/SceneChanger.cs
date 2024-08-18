@@ -18,7 +18,7 @@ public class SceneChanger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Change to a scene named "NextScene"
-            ChangeScene("Village Scene");
+            ChangeScene("Nana");
         }
     }
 }

@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-	
-    public Transform checkpointPosition; // The position to respawn at
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            LevelManager.Instance.UpdateSpawnPosition(transform);
+        }
+    }
+}
 
-    // This method will be called when the player reaches this checkpoint
-    public void ActivateCheckpoint()
-    {
-        CheckpointManager.Instance.SetCheckpoint(checkpointPosition);
-    }
-	private void OnTriggerEnter2D(Collider2D other)
-{
-    if (other.CompareTag("Player"))
-    {
-        ActivateCheckpoint();
-    }
-}
-}
