@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 {    
     [Header("Health")]
     [SerializeField] private float initialHealth = 10f;
-    [SerializeField] private float maxHealth = 10f;
+    public float maxHealth = 10f;
 
     [Header("Shield")] 
     [SerializeField] private float initialShield = 5f;
