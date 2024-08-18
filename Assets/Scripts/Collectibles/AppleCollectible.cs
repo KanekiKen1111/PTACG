@@ -5,6 +5,13 @@ using UnityEngine;
 public class AppleCollectible : MonoBehaviour
 {
     protected CharacterController _playerComponent;
+    public string keyName = "Apple";
+    private InventoryManager inventoryManager;
+
+    void Start()
+    {
+        inventoryManager = FindObjectOfType<InventoryManager>();
+    }
 
     // Contains the logic of the collectable 
     private void CollectLogic()
@@ -21,6 +28,7 @@ public class AppleCollectible : MonoBehaviour
     protected virtual void Collect()
     {
         Debug.Log("This is working!!!");
+        inventoryManager.AddKey(keyName);
         Destroy(gameObject);
     }
 

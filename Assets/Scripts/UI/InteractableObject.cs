@@ -8,7 +8,7 @@ public class InteractableObject : MonoBehaviour
     public string message = "Press E to collect"; // Customizable message
 
     private bool isPlayerNearby = false;
-    public string keyName = "Key"; // Name of the key
+    public string keyName = "Silver Key"; // Name of the key
     private InventoryManager inventoryManager;
 
     void Start()

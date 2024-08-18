@@ -14,10 +14,14 @@ public class NPC : MonoBehaviour
     public float wordSpeed;
     public bool playerIsClose;
 
+    public Text interactText; // Reference to the UI Text element
+    public string message = "Press E to talk"; // Customizable message
+
 
     void Start()
     {
         dialogueText.text = "";
+        interactText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -77,6 +81,8 @@ public class NPC : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsClose = true;
+            interactText.text = message;
+            interactText.gameObject.SetActive(true);
         }
     }
 
@@ -86,6 +92,7 @@ public class NPC : MonoBehaviour
         {
             playerIsClose = false;
             RemoveText();
+            interactText.gameObject.SetActive(false);
         }
     }
 }

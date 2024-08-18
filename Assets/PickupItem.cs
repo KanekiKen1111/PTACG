@@ -9,6 +9,15 @@ public class PickupItem : MonoBehaviour
     [SerializeField] float pickupDistance = 2.5f;
     [SerializeField] float despawnTime = 10f;
 
+    public string keyName = "Pumpkin";
+    private InventoryManager inventoryManager;
+
+    void Start()
+    {
+        inventoryManager = FindObjectOfType<InventoryManager>();
+    }
+
+
     private void Awake()
     {
         player = GameManager.instance.player.transform;
@@ -19,6 +28,7 @@ public class PickupItem : MonoBehaviour
         despawnTime -= Time.deltaTime;
         if (despawnTime < 0)
         {
+            inventoryManager.AddKey(keyName);
             Destroy(gameObject);
 
         }
@@ -31,6 +41,7 @@ public class PickupItem : MonoBehaviour
             (transform.position, player.position, speed * Time.deltaTime);
         if (distance < 0.1f)
         {
+            inventoryManager.AddKey(keyName);
             Destroy(gameObject);
         }
     }
