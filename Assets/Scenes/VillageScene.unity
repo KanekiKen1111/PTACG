@@ -3101,7 +3101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolAreaSize: {x: 32.6, y: 5.3}
   speed: 2
-  detectionRadius: 2.44
+  detectionRadius: 2.5
   fireballPrefab: {fileID: 8683669424111459527, guid: 54445ea0715542f478abec989ef9bd68,
     type: 3}
   fireballSpawnPoint: {fileID: 776990064}
