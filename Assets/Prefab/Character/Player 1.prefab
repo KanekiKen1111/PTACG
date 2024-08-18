@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1125121085984830544
@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 5460119603451043167}
   - component: {fileID: 8333001888016716288}
   - component: {fileID: 6716991097592334156}
+  - component: {fileID: 1257688081635120428}
   - component: {fileID: 9127129030797175801}
   - component: {fileID: 1358494275887082472}
   m_Layer: 10
@@ -391,6 +392,20 @@ MonoBehaviour:
   weaponToUse: {fileID: 8629871511071932796, guid: b6d4a70e349dd804eb13845ecb00ef9a,
     type: 3}
   weaponHolderPosition: {fileID: 5146005485517496526}
+--- !u!114 &1257688081635120428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4787881020415480232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e824d18fa43b8469133cb24d7a1689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 5
+  knockTime: 0.2
 --- !u!50 &9127129030797175801
 Rigidbody2D:
   serializedVersion: 4

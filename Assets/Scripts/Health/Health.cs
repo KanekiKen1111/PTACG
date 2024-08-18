@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
 
     private Character character;
     private CharacterController controller;
-    private Collider2D collider2D;
+    private new Collider2D collider2D;
     private SpriteRenderer spriteRenderer;
 
     private bool shieldBroken;

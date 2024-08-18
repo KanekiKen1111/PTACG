@@ -6,11 +6,9 @@ public class SwitchController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        doorController.SetDoorState(true);
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        doorController.SetDoorState(false);
+        if (other.CompareTag("Player"))
+        {
+            doorController.SetDoorState(true);
+        }
     }
 }
