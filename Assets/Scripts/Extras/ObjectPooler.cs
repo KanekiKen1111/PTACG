@@ -10,13 +10,13 @@ public class ObjectPooler : MonoBehaviour
 
     private List<GameObject> pooledObjects;
     private GameObject parentObject;
-    
+
     private void Start()
     {
         parentObject = new GameObject("Pool");
         Refill();
-}
-    
+    }
+
     // Creates our Pool
     public void Refill()
     {
@@ -30,21 +30,22 @@ public class ObjectPooler : MonoBehaviour
     // Return one object from our pool
     public GameObject GetObjectFromPool()
     {
-        // Return one Object from the pool if we find one disable
         for (int i = 0; i < pooledObjects.Count; i++)
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            if (pooledObjects[i] != null && !pooledObjects[i].activeInHierarchy)
             {
+                Debug.Log("Object retrieved from pool: " + pooledObjects[i].name);
                 return pooledObjects[i];
             }
         }
 
-        // If we need more objects, lets expand our pool
         if (poolCanExpand)
         {
+            Debug.Log("Expanding pool.");
             return AddObjectToPool();
         }
 
+        Debug.LogWarning("No available objects in the pool, and pool expansion is disabled.");
         return null;
     }
 
@@ -54,8 +55,8 @@ public class ObjectPooler : MonoBehaviour
         GameObject newObject = Instantiate(objectPrefab);
         newObject.SetActive(false);
         newObject.transform.parent = parentObject.transform;
-        
+
         pooledObjects.Add(newObject);
         return newObject;
-    }     
+    }
 }
