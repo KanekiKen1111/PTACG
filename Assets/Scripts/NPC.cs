@@ -16,6 +16,7 @@ public class NPC : MonoBehaviour
 
     public Text interactText; // Reference to the UI Text element
     public string message = "Press E to talk"; // Customizable message
+    public AudioSource NPCSound;
 
 
     void Start()
@@ -37,6 +38,12 @@ public class NPC : MonoBehaviour
             else if (dialogueText.text == dialogue[index])
             {
                 NextLine();
+            }
+
+            // Play the sound
+            if (NPCSound != null)
+            {
+                NPCSound.Play();
             }
 
         }

@@ -29,6 +29,7 @@ public class PickupItem : MonoBehaviour
         if (despawnTime < 0)
         {
             inventoryManager.AddKey(keyName);
+
             Destroy(gameObject);
 
         }

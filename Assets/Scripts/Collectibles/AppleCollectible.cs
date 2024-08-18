@@ -8,6 +8,7 @@ public class AppleCollectible : MonoBehaviour
     public string keyName = "Apple";
     private InventoryManager inventoryManager;
 
+
     void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();

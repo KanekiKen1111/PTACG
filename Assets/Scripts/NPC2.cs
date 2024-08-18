@@ -18,6 +18,7 @@ public class NPC2 : MonoBehaviour
     public string message = "Press E to talk"; // Customizable message
 
     private StatueGoddess statueGoddess;
+    public AudioSource doneSound;
 
 
     void Start()
@@ -46,6 +47,11 @@ public class NPC2 : MonoBehaviour
             else if (dialogueText.text == dialogue[index])
             {
                 NextLine();
+            }
+            // Play the sound
+            if (doneSound != null)
+            {
+                doneSound.Play();
             }
 
         }
