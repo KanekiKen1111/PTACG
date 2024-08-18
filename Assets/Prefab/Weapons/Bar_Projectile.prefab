@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1028486749417026523}
   - component: {fileID: 3768548796229027617}
   - component: {fileID: -9187705736621565736}
+  - component: {fileID: -2269155552637301294}
   m_Layer: 0
   m_Name: Bar_Projectile
   m_TagString: Untagged
@@ -186,3 +187,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582fc009757ed524f8c478f731a17a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 10
+--- !u!114 &-2269155552637301294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8467806880782531202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e824d18fa43b8469133cb24d7a1689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 5
+  knockTime: 0.2
