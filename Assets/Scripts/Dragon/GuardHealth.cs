@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GuardHealth : MonoBehaviour
 {
     public float maxHealth = 100f; // Maximum health of the guard
     public float currentHealth; // Current health of the guard
     public Slider healthBar; // Reference to the UI Slider for the health bar
+
+    private Animator animator;
+    private bool isDead = false;
 
     void Start()
     {
@@ -15,11 +19,15 @@ public class GuardHealth : MonoBehaviour
             healthBar.maxValue = maxHealth; // Set the maximum value of the health bar
             healthBar.value = currentHealth; // Set the initial value of the health bar
         }
+
+        animator = GetComponent<Animator>(); // Get the Animator component
     }
 
     // Method to take damage
     public void TakeDamage(float damageAmount)
     {
+        if (isDead) return; // Prevent further damage if already dead
+
         currentHealth -= damageAmount;
         if (currentHealth <= 0)
         {
@@ -36,9 +44,23 @@ public class GuardHealth : MonoBehaviour
     // Method called when health reaches zero
     void Die()
     {
+        if (isDead) return; // Prevent multiple calls to Die()
+
+        isDead = true; // Set the dead flag to true
         Debug.Log("Guard has died.");
-        // Add logic here for what happens when the guard dies
-        // For example: playing a death animation, removing the guard, etc.
-        Destroy(gameObject); // Destroy the guard GameObject
+        animator.SetBool("Die", true); // Trigger the death animation
+
+        // Start the coroutine to wait for the animation to finish before destroying the object
+        StartCoroutine(WaitForDeathAnimation());
+    }
+
+    private IEnumerator WaitForDeathAnimation()
+    {
+        // Wait until the animation is finished
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        yield return new WaitForSeconds(stateInfo.length);
+
+        // Destroy the guard GameObject
+        Destroy(gameObject);
     }
 }
