@@ -4,7 +4,8 @@ using System.Collections;
 
 public class StatueGoddess : MonoBehaviour
 {
-    public string requiredKey = "Pumpkin"; // The name of the key required to open the door
+    public string requiredKey = "Pumpkin";// The name of the key required to open the door
+    public string NPCName = "Training Dummy";
     public Text doorMessage; // Reference to the UI Text element for displaying messages
     public float messageDisplayTime = 2f; // Duration to display the door message
     public GameObject objectToDestroy; // GameObject to destroy when door is opened
@@ -69,7 +70,7 @@ public class StatueGoddess : MonoBehaviour
             isConditionMet = true;
             preventNPC2 = false;
             // Display message to open door with the key
-            doorMessage.text = $"Press 'E' to offer {requiredKey} to the Statue of Goddess";
+            doorMessage.text = $"Press 'E' to offer {requiredKey} to the {NPCName}";
         }
         else
         {
