@@ -11,6 +11,16 @@ public class ExitMenu : MonoBehaviour
         Debug.Log("Loading!");
     }
 
+    void Update()
+    {
+        // Check if the Escape key is pressed
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Quit the application
+            QuitGame();
+        }
+    }
+
     public void QuitGame()
     {
         Application.Quit();
