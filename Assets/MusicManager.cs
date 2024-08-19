@@ -9,6 +9,7 @@ public class MusicManager : MonoBehaviour
 
     private int sceneChangeCount = 0; // Counter for scene changes
     private int maxSceneChanges = 4; // Number of scene changes before stopping music
+    private string lobbySceneName = "StartScene"; // The name of the lobby scene
 
     void Awake()
     {
@@ -44,7 +45,14 @@ public class MusicManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         sceneChangeCount++;
-        if (sceneChangeCount >= maxSceneChanges)
+
+        if (scene.name == lobbySceneName)
+        {
+            // Restart the music when entering the lobby scene
+            audioSource.Stop();
+            audioSource.Play();
+        }
+        else if (sceneChangeCount >= maxSceneChanges)
         {
             // Stop the music after the fourth scene change
             audioSource.Stop();
