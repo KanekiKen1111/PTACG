@@ -471,10 +471,10 @@ MonoBehaviour:
     and hiding them in three mystical lands. Though these lands seem familiar, each
     holds its own subtle secrets and challenges.\n\nYou, a courageous adventurer,
     have been chosen to restore the balance. Your journey will take you through the
-    Ember Fields, the Gloomy Glades, and the Frostbound Plains\u2014lands that share
-    a common thread yet demand unique courage.\n\nReclaim the artifacts, confront
-    the lurking evil, and restore harmony to the world. The fate of the Trinity rests
-    in your hands.\n\n"
+    Emberlands, the Shadow Groves, and the FrostVeil\u2014lands that share a common
+    thread yet demand unique courage.\n\nReclaim the artifacts, confront the lurking
+    evil, and restore harmony to the world. The fate of the Trinity rests in your
+    hands.\n\n"
 --- !u!222 &624497694
 CanvasRenderer:
   m_ObjectHideFlags: 0
