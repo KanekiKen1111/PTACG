@@ -14,6 +14,7 @@ public class CameraRoomConfiner : MonoBehaviour
             var confiner = virtualCamera.GetComponent<CinemachineConfiner>();
             if (confiner != null)
             {
+                Debug.Log(" the player 99999 Entered room: " + roomCollider.name);
                 confiner.m_BoundingShape2D = roomCollider; // Set the new bounding shape
                 virtualCamera.m_Lens.OrthographicSize = orthographicSize; // Set the new orthographic size
             }

@@ -60,6 +60,13 @@ public class Health : MonoBehaviour
         if (!shieldBroken)
         {
             CurrentShield -= damage;
+
+            // Ensure the shield does not drop below zero
+            if (CurrentShield < 0)
+            {
+                CurrentShield = 0;
+            }
+
             UIManager.Instance.UpdateHealth(CurrentHealth, maxHealth, CurrentShield, maxShield);
 
             if (CurrentShield <= 0)
@@ -68,7 +75,7 @@ public class Health : MonoBehaviour
             }
             return;
         }
-        
+
         CurrentHealth -= damage;
         UIManager.Instance.UpdateHealth(CurrentHealth, maxHealth, CurrentShield, maxShield);
 
